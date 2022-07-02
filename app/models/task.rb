@@ -3,4 +3,5 @@ class Task < ApplicationRecord
   validates :deadline, presence: true
   validates :priority, presence: true
   validates :content, presence: true
+  validates :status, presence: true
 end

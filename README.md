@@ -15,6 +15,7 @@
 | deadline  | datetime  |
 | priority |  string  |
 | content  | string  |
+| status |  string  |
 
 ## Labelモデル
 | カラム名 | データ型 |

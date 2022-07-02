@@ -17,21 +17,28 @@
   </div>
 
   <div class="field">
+    <%= form.label :content %>
+    <%= form.text_field :content %>
+  </div>
+
+  <div class="field">
     <%= form.label :deadline %>
     <%= form.date_field :deadline %>
   </div>
 
   <div class="field">
-    <%= form.label :priority %>
-    <%= form.text_field :priority %>
+    <%= form.label :status %>
+    <%= form.select :status, ['着手', '未着手', '完了'], {include_blank: '選択してください'} %>
   </div>
 
   <div class="field">
-    <%= form.label :content %>
-    <%= form.text_field :content %>
+    <%= form.label :priority %>
+    <%= form.select :priority, ['高', '中', '高'], {include_blank: '選択してください'} %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
+
+
 <% end %>
