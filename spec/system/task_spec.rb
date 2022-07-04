@@ -6,11 +6,11 @@ RSpec.describe 'タスク管理機能', type: :system do
         visit new_task_path
         fill_in 'task_title',	with: '会食'
         fill_in 'task_content', with: '〇〇さんと会食'
-        fill_in 'task_deadline',  with: '2022-07-14'
+        fill_in 'task_deadline',  with: Date.today
         find("#task_status").find("option[value='未着手']").select_option
         find("#task_priority").find("option[value='中']").select_option
-        click_button '登録する'
-        click_link '投稿一覧に戻る'
+        click_button 'Create Task'
+        expect(page).to have_content '会食'
       end
     end
   end
@@ -28,7 +28,7 @@ RSpec.describe 'タスク管理機能', type: :system do
       it '該当タスクの内容が表示される' do
         task = FactoryBot.create(:task, title: '会食', content: '〇〇さんと会食', deadline: '2022-07-14', status: '未着手', priority: '中')
         visit tasks_path
-        click_link '詳細'
+        click_link 'Show'
         expect(page).to have_content '会食'
       end
     end
