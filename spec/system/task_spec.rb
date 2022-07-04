@@ -26,7 +26,10 @@ RSpec.describe 'タスク管理機能', type: :system do
   describe '詳細表示機能' do
     context '任意のタスク詳細画面に遷移した場合' do
       it '該当タスクの内容が表示される' do
-
+        task = FactoryBot.create(:task, title: '会食', content: '〇〇さんと会食', deadline: '2022-07-14', status: '未着手', priority: '中')
+        visit tasks_path
+        click_link '詳細'
+        expect(page).to have_content '会食'
       end
     end
   end
