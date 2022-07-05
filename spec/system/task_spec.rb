@@ -9,7 +9,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         fill_in 'task_deadline',  with: Date.today
         find("#task_status").find("option[value='未着手']").select_option
         find("#task_priority").find("option[value='中']").select_option
-        click_button 'Create Task'
+        click_button '登録する'
         expect(page).to have_content '会食'
       end
     end
@@ -17,12 +17,22 @@ RSpec.describe 'タスク管理機能', type: :system do
   describe '一覧表示機能' do
     context '一覧画面に遷移した場合' do
       it '作成済みのタスク一覧が表示される' do
-        task = FactoryBot.create(:task, title: '会食', content: '〇〇さんと会食', deadline: '2022-07-14', status: '未着手', priority: '中')
+        task = FactoryBot.create(:task, title: '会食', content: '〇〇さんと会食', deadline: '2022-07-14', status: '未着手', priority: '中') 
         visit tasks_path
         expect(page).to have_content '会食'
-      end
     end
   end
+  context 'タスクが作成日時の降順に並んでいる場合' do
+    it '新しいタスクが一番上に表示される' do
+      task = FactoryBot.create(:task, title: '会食1', content: '〇〇さんと会食', deadline: '2022-07-14', status: '未着手', priority: '中')
+      second_task = FactoryBot.create(:second_task, title: '会食2', content: '〇〇さんと会食', deadline: '2022-07-14', status: '未着手', priority: '中')
+      visit tasks_path
+      task_list = all('.task_row')
+      expect(task_list[0]).to have_content '会食2'
+      expect(task_list[1]).to have_content '会食1'
+    end
+  end
+end
   describe '詳細表示機能' do
     context '任意のタスク詳細画面に遷移した場合' do
       it '該当タスクの内容が表示される' do
