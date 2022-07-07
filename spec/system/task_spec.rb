@@ -38,7 +38,7 @@ end
       it '該当タスクの内容が表示される' do
         task = FactoryBot.create(:task, title: '会食', content: '〇〇さんと会食', deadline: '2022-07-14', status: '未着手', priority: '中')
         visit tasks_path
-        click_link 'Show'
+        click_link '詳細'
         expect(page).to have_content '会食'
       end
     end
