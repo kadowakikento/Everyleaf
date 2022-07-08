@@ -5,8 +5,15 @@ class TasksController < ApplicationController
   def index
     @tasks = Task.all.order(created_at: :DESC)
     @tasks = Task.all.order(deadline: :DESC) if params[:sort_deadline]
-    @tasks = Task.where("title LIKE ?", "%#{params[:task][:title]}%") if params[:task].present?
-    # @tasks = Task.all.order(title: :DESC) if params[:sort_title]
+    if params[:task].present? 
+      if params[:task][:title].present? && params[:task][:status].present?
+        @tasks = Task.where("title LIKE ?", "%#{params[:task][:title]}%").or(Task.where(status: params[:task][:status]))
+      elsif params[:task][:title].present?
+        @tasks = Task.where("title LIKE ?", "%#{params[:task][:title]}%")
+      elsif params[:task][:status].present?
+        @tasks = Task.where(status: params[:task][:status])
+      end
+    end
   end
 
   # GET /tasks/1 or /tasks/1.json
