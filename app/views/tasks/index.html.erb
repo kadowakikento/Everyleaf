@@ -2,6 +2,14 @@
 
 <h1>タスク一覧</h1>
 
+<%= form_with(url: tasks_path, method: :get, scope: :task, local: true) do |form| %>
+  <div>
+    <%= form.label :タスク名検索 %>
+    <%= form.text_field :title %>
+    <%= form.submit "検索" %>
+  </div>
+<% end %>
+
 <table>
   <thead>
     <tr>
@@ -33,3 +41,6 @@
 <br>
 
 <%= link_to '新しいタスクを追加する', new_task_path %>
+<br>
+<%= link_to 'ソートを解除', tasks_path %>
+
