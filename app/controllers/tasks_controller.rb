@@ -8,12 +8,14 @@ class TasksController < ApplicationController
     @tasks = Task.all.order(priority: :DESC) if params[:sort_priority]
     if params[:task].present? 
       if params[:task][:title].present? && params[:task][:status].present?
-        @tasks = Task.where("title LIKE ?", "%#{params[:task][:title]}%").or(Task.where(status: params[:task][:status]))
+        @tasks = Task.where("title LIKE ?", "%#{params[:task][:title]}%").where(status: params[:task][:status])
       elsif params[:task][:title].present?
         @tasks = Task.where("title LIKE ?", "%#{params[:task][:title]}%")
       elsif params[:task][:status].present?
         @tasks = Task.where(status: params[:task][:status])
       end
+      # @tasks = Task.where("title LIKE ?", "%#{params[:task][:title]}%") if params[:task][:title].present?
+      # @tasks = @tasks.where(status: params[:task][:status]) if params[:task][:status].present?
     end
   end
 
