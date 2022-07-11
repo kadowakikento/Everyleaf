@@ -5,6 +5,7 @@ class TasksController < ApplicationController
   def index
     @tasks = Task.all.order(created_at: :DESC)
     @tasks = Task.all.order(deadline: :DESC) if params[:sort_deadline]
+    @tasks = Task.all.order(priority: :DESC) if params[:sort_priority]
     if params[:task].present? 
       if params[:task][:title].present? && params[:task][:status].present?
         @tasks = Task.where("title LIKE ?", "%#{params[:task][:title]}%").or(Task.where(status: params[:task][:status]))

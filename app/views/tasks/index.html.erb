@@ -17,7 +17,7 @@
       <th>タスク詳細</th>
       <th scope = "col" ><%= link_to '終了期限', tasks_path(sort_deadline: "true") %></th>
       <th>状況</th>
-      <th>優先度</th>
+      <th scope = "col" ><%= link_to '優先度', tasks_path(sort_priority: "true") %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -42,5 +42,5 @@
 
 <%= link_to '新しいタスクを追加する', new_task_path %>
 <br>
-<%= link_to 'ソートを解除', tasks_path %>
+<%= link_to 'ソートを解除する', tasks_path %>
 
