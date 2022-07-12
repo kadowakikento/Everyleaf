@@ -42,6 +42,16 @@ RSpec.describe 'タスク管理機能', type: :system do
       expect(task_list[1]).to have_content '会食1'
     end 
   end
+  context '優先順位でソートした場合' do
+    it '優先順位の高い順で表示される' do
+      task = FactoryBot.create(:task, title: '会食1', content: '〇〇さんと会食', deadline: '2022-07-14', status: '未着手', priority: '中')
+      second_task = FactoryBot.create(:second_task, title: '会食2', content: '〇〇さんと会食', deadline: '2022-07-15', status: '未着手', priority: '高')
+      visit tasks_path
+      task_list = all('.task_row')
+      expect(task_list[0]).to have_content '会食2'
+      expect(task_list[1]).to have_content '会食1'
+    end 
+  end
 end
   describe '詳細表示機能' do
     context '任意のタスク詳細画面に遷移した場合' do
