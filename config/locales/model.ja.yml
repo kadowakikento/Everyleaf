@@ -1,14 +1,17 @@
 ja:
   activerecord:
     models:
-      blog: ブログ
+      task: タスク
       user: ユーザー
     attributes:
-      blog:
-        title: タイトル
+      task:
+        title: タスク名
         content: 内容
+        deadline: 終了期限
+        status: 状況
+        priority: 優先度
       user:
-        title: タイトル
+        title: タスク名
         name: 名前
         email: メールアドレス
         current_password: 現在のパスワード
