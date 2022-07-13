@@ -1,29 +1,30 @@
+<div class="container text-center" style="width: 500px;">
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
+  <strong>タスク名:</strong>
   <%= @task.title %>
 </p>
 
 <p>
-  <strong>Content:</strong>
+  <strong>タスク詳細:</strong>
   <%= @task.content %>
 </p>
 
 <p>
-  <strong>Deadline:</strong>
+  <strong>終了期限:</strong>
   <%= @task.deadline %>
 </p>
 
 <p>
-  <strong>Status:</strong>
+  <strong>状況:</strong>
   <%= @task.status %>
 </p>
 
 <p>
-  <strong>Priority:</strong>
+  <strong>優先度:</strong>
   <%= @task.priority %>
 </p>
 
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+<%= link_to '編集', edit_task_path(@task) %> |
+<%= link_to '一覧へ戻る', tasks_path %>

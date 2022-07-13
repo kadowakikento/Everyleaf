@@ -1,3 +1,4 @@
+<div class="container text-center" style="width: 700px;">
 <p id="notice"><%= notice %></p>
 
 <h1>タスク一覧</h1>
@@ -30,18 +31,18 @@
         <td><%= task.deadline %></td>
         <td><%= task.status %></td>
         <td><%= task.priority %></td>
-        <td><%= link_to '詳細', task %></td>
-        <td><%= link_to '編集', edit_task_path(task) %></td>
-        <td><%= link_to '削除', task, method: :delete, data: { confirm: '本当に削除しますか?' } %></td>
+        <td><%= link_to '詳細', task, class: "btn btn-outline-primary" %></td>
+        <td><%= link_to '編集', edit_task_path(task), class: "btn btn-outline-success" %></td>
+        <td><%= link_to '削除', task, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "btn btn-outline-danger" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
 
-<%= link_to '新しいタスクを追加する', new_task_path %>
+<%= link_to '新しいタスクを追加する', new_task_path, class: "btn btn-dark" %>
 <br>
-<%= link_to 'ソートを解除する', tasks_path %>
+<br>
+<%= link_to 'ソートを解除する', tasks_path, class: "btn btn-primary"%>
 
 <%= paginate @tasks %>
