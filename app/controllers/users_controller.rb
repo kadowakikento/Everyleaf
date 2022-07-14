@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :login_required, only: %i[ new create]
+  skip_before_action :login_already, only: %i[ show]
   # before_action :set_user, only: %i[ show edit update ]
   # before_action :ensure_user, only: %i[ show edit update ]
 
@@ -20,12 +21,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @tasks = current_user.tasks
-  end
-
-  def edit
-  end
-
-  def update
   end
 
   private
