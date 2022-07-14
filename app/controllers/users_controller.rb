@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   skip_before_action :login_required, only: %i[ new create]
   skip_before_action :login_already, only: %i[ show]
-  # before_action :set_user, only: %i[ show edit update ]
-  # before_action :ensure_user, only: %i[ show edit update ]
+  before_action :ensure_user, only: %i[ show ]
+
 
   def new
     @user = User.new
@@ -24,6 +24,12 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def ensure_user
+    @users = current_user.id
+    @user = User.find(params[:id]) 
+    redirect_to new_session_path if @user.id != @users
+  end
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
