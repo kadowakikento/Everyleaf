@@ -6,7 +6,7 @@
 
   <body>
     <tbody>
-      <% @users.each do |user| %>
+      <% @users.preload(:tasks).all.each do |user| %>
         <tr class="task_row" >
           <td><%= user.name %></td>
           <td><%= user.email %></td>
