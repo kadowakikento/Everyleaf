@@ -1,5 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :set_user, only: %i(show edit update destroy)
+  before_action :ensure_user
   skip_before_action :login_already
 
   def index
@@ -43,6 +44,11 @@ class Admin::UsersController < ApplicationController
   end
 
   private
+
+  def ensure_user
+    @users = current_user
+    redirect_to tasks_path, notice: "管理者以外はアクセスできません" if @user.admin == false
+  end
 
   def set_user
     @user = User.find(params[:id])
