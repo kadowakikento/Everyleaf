@@ -47,7 +47,7 @@ class Admin::UsersController < ApplicationController
 
   def ensure_user
     @users = current_user
-    redirect_to tasks_path, notice: "管理者以外はアクセスできません" if @user.admin == false
+    redirect_to tasks_path, notice: "管理者以外はアクセスできません" if @users.admin == false
   end
 
   def set_user
