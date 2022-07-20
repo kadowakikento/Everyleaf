@@ -5,6 +5,15 @@
 <table>
 
   <body>
+    <thead>
+      <tr>
+        <th>ユーザー</th>
+        <th>メールアドレス</th>
+        <th>タスク登録数</th>
+        <th>管理者</th>
+      </tr>
+    </thead>
+
     <tbody>
       <% @users.preload(:tasks).all.each do |user| %>
         <tr class="task_row" >
