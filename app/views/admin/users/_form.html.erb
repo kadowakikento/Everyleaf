@@ -17,7 +17,7 @@
   <%= f.email_field :email %>
 
   <%= f.label :admin %>
-  <%= f.select :admin, [['あり', 'true'],['なし', 'false']], { include_blank: '選択してください' } %>
+  <%= f.select :admin, [['あり', 'true'],['なし', 'false']], { include_blank: '選択してください', selected: 0 } %>
 
   <%= f.label :password %>
   <%= f.password_field :password %>
@@ -27,5 +27,3 @@
 
   <%= f.submit "ユーザー登録" %>
 <% end %>
-
-<%= link_to 'Back', tasks_path %>

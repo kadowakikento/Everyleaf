@@ -4,7 +4,7 @@ class Admin::UsersController < ApplicationController
   skip_before_action :login_already
 
   def index
-    @users = User.all.order(:id)
+    @users = User.all.includes(:tasks)
   end
 
   def new
