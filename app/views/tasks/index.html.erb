@@ -7,9 +7,9 @@
     <%= form.label :タスク名検索 %>
     <%= form.text_field :title %>
     <%= form.label :状況 %>
-    <%= form.select :status, Task.statuses.keys.map, include_blank: true %>
+    <%= form.select :status, Task.statuses.keys.map, { include_blank: "---" } %>
     <%= form.label :ラベル %>
-    <%= form.select("label_id", Label.pluck(:name, :id), { include_blank: true }) %>
+    <%= form.select("label_id", Label.pluck(:name, :id), { include_blank: "---" }) %>
     <%= form.submit "検索" %>
 <% end %>
 
