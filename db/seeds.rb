@@ -24,12 +24,12 @@ User.create([{name: "kento", email: "sample@sample.com", password: "12345678", a
 end
 
 10.times do |i|
-  Task.create(
+  Task.create([
     title: "task#{i + 1}",
     content: "content#{i + 1}",
     deadline: DateTime.now,
     status: rand(1..3),
     priority: rand(1..3),
     user_id: "#{i + 1}"
-  )
+  ])
 end
