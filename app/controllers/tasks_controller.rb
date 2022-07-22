@@ -7,9 +7,7 @@ class TasksController < ApplicationController
     @tasks = current_user.tasks.all.order(created_at: :DESC).page(params[:page]).per(6)
     @tasks = current_user.tasks.all.order(deadline: :DESC).page(params[:page]).per(6) if params[:sort_deadline]
     @tasks = current_user.tasks.all.order(priority: :DESC).page(params[:page]).per(6) if params[:sort_priority]
-
-    # title = params[:task][:title]
-    # status = params[:task][:status]
+    # @tasks = @tasks.joins(:labels).where(labels: { id: params[:label_id] }).page(params[:page]).per(6) if params[:label_id].present?
     
     if params[:task].present?
       title = params[:task][:title]
@@ -20,6 +18,8 @@ class TasksController < ApplicationController
         @tasks = current_user.tasks.all.title(title).page(params[:page]).per(6)
       elsif params[:task][:status].present?
         @tasks = current_user.tasks.all.status(status).page(params[:page]).per(6)
+      elsif params[:task][:label_id].present?
+        @tasks = @tasks.joins(:labels).where(labels: { id: params[:task][:label_id] }).page(params[:page]).per(6)
       end
       # @tasks = Task.where(“title LIKE ?“, “%#{params[:task][:title]}%“) if params[:task][:title].present?
       # @tasks = @tasks.where(status: params[:task][:status]) if params[:task][:status].present?
@@ -85,6 +85,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:title, :deadline, :priority, :content, :status)
+      params.require(:task).permit(:title, :deadline, :priority, :content, :status, { label_ids: [] })
     end
 end

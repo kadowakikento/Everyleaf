@@ -1,5 +1,5 @@
 <div class="container text-center" style="width: 700px;">
-<h1><%= @user.name %>のページ</h1>
+<h1><%= @user.name %>さんのページ</h1>
 
 <p>メールアドレス: <%= @user.email %></p>
 
@@ -43,4 +43,10 @@
   </tbody>
 </table>
 
+<br>
+
+<%= link_to 'タスク投稿一覧へ戻る', tasks_path %>
+<% if current_user.admin? %>
+<%= link_to '管理者画面へ', admin_users_path %>
+<% end %>
 
